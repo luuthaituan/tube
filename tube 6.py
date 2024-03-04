@@ -7,6 +7,7 @@ from urllib.parse import urlparse, parse_qs
 from ttkthemes import ThemedTk
 from tkinter.ttk import Progressbar
 
+
 def validate_url(url):
     # Check if the URL is a valid YouTube video URL
     try:
@@ -19,9 +20,11 @@ def validate_url(url):
     except Exception:
         return False
 
+
 def validate_path(path):
     # Check if the path is a valid directory
     return os.path.isdir(path)
+
 
 def download_video():
     video_url = url_entry.get()
@@ -47,13 +50,16 @@ def download_video():
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
 
+
 def my_hook(d):
     if d['status'] == 'downloading':
         pbar['value'] = int(float(d['_percent_str'][:-1]))
 
+
 def start_download_thread():
     download_thread = Thread(target=download_video)
     download_thread.start()
+
 
 class MyLogger(object):
     def debug(self, msg):
@@ -64,6 +70,7 @@ class MyLogger(object):
 
     def error(self, msg):
         output_text.insert(END, msg + '\n')
+
 
 root = ThemedTk(theme="vista")  # Use the "vista" theme
 
